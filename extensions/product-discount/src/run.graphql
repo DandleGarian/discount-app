@@ -1,0 +1,32 @@
+query RunInput {
+  cart {
+    lines {
+      cost {
+        totalAmount {
+          amount
+        }
+      }
+      quantity
+      merchandise {
+        __typename
+        ...on ProductVariant {
+            id
+        }
+      }
+    }
+    buyerIdentity {
+      customer {
+        hasAnyTag(tags: ["Top 100", "VIP"])
+        hasTags(tags: ["Top 100", "VIP"]) {
+          hasTag
+          tag
+        }
+        __typename
+        ...on Customer {
+          displayName
+          id
+        }
+      }
+    }
+  }
+}
